@@ -1,5 +1,6 @@
 package com.equifax.api.controller;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,8 +64,10 @@ public class TutorialController {
     @PostMapping("/tutorials")
     public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
         try {
+            String hostname = InetAddress.getLocalHost().getHostAddress() + " " + InetAddress.getLocalHost().getHostName();
+
             Tutorial _tutorial = tutorialRepository
-                    .save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
+                    .save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false, hostname));
             return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

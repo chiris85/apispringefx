@@ -19,15 +19,23 @@ public class Tutorial {
     @Column(name = "published")
     private boolean published;
 
+    @Column(name = "host")
+    private String host;
+
     public Tutorial() {
 
     }
 
-    public Tutorial(String title, String description, boolean published) {
+    public Tutorial(String title, String description, boolean published, String host) {
         this.title = title;
         this.description = description;
         this.published = published;
+        this.host = host;
     }
+
+    public String getHost() { return host; }
+
+    public void setHost(String host) { this.host = host; }
 
     public long getId() {
         return id;
@@ -59,7 +67,7 @@ public class Tutorial {
 
     @Override
     public String toString() {
-        return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
+        return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + ", host=" + host + "]";
     }
 
 }
